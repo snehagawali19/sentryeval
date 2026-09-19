@@ -1,0 +1,9 @@
+run_name: multi_model_compare
+seed: 42
+targets:
+  - {name: openai/gpt-4o, type: openai, model_id: gpt-4o}
+  - {name: anthropic/claude-opus-4-6, type: anthropic, model_id: claude-opus-4-6}
+  - {name: gemini/gemini-2.5-pro, type: gemini, model_id: gemini-2.5-pro}
+datasets: [sentryeval-direct-v1, sentryeval-indirect-rag-v1, sentryeval-jailbreak-v1, sentryeval-context-confusion-v1]
+attacks: [static]
+judges: [stringmatch, strongreject-v1]

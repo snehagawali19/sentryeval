@@ -1,0 +1,12 @@
+run_name: real_eval
+seed: 42
+max_queries: 100
+targets:
+  - name: openrouter/openai-gpt-4o-mini
+    type: openai
+    model_id: openai/gpt-4o-mini
+    base_url: https://openrouter.ai/api/v1
+datasets: [sentryeval-direct-v1, sentryeval-indirect-rag-v1, sentryeval-jailbreak-v1, sentryeval-context-confusion-v1]
+attacks: [static]
+judges: [stringmatch, injection-detector]
+output: {runs_dir: runs}

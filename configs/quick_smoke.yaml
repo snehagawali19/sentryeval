@@ -1,0 +1,26 @@
+# Offline, no API keys, deterministic. Runs in CI.
+run_name: "quick_smoke"
+seed: 42
+max_queries: 100
+
+targets:
+  - name: "offline/reference"
+    type: offline
+
+datasets:
+  - "sentryeval-direct-v1"
+  - "sentryeval-jailbreak-v1"
+
+attacks:
+  - "static"
+  - "prompt_injection"
+
+judges:
+  - "stringmatch"
+  - "injection-detector"
+
+output:
+  runs_dir: "runs"
+  save_transcripts: true
+  save_leaderboard: true
+  generate_graveyard: false

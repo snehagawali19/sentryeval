@@ -1,0 +1,61 @@
+# Full 4-surface, 3-model, 60-test-case SentryEval benchmark
+# Requires: ANTHROPIC_API_KEY, OPENAI_API_KEY, GOOGLE_API_KEY
+
+run_name: "full_benchmark"
+seed: 42
+max_queries: 2000
+
+targets:
+  - name: "anthropic/claude-opus-4-6"
+    type: anthropic
+    model_id: "claude-opus-4-6"
+    temperature: 0.0
+
+  - name: "openai/gpt-4o"
+    type: openai
+    model_id: "gpt-4o"
+    temperature: 0.0
+
+  - name: "openai/gpt-4o-mini"
+    type: openai
+    model_id: "gpt-4o-mini"
+    temperature: 0.0
+
+datasets:
+  - "sentryeval-direct-v1"
+  - "sentryeval-indirect-rag-v1"
+  - "sentryeval-jailbreak-v1"
+  - "sentryeval-context-confusion-v1"
+
+attacks:
+  - "static"
+  - "prompt_injection"
+  - "roleplay_jailbreak"
+  - "authority_spoofing"
+  - "context_confusion_role"
+  - "context_confusion_scope"
+  - "crescendo"
+  - "gradual_escalation"
+
+judges:
+  - "stringmatch"
+  - "strongreject-v1"
+  - "injection-detector"
+
+metrics:
+  - "asr"
+  - "asr_at_k"
+  - "refusal_rate"
+  - "injection_success_rate"
+
+judge_agreement:
+  require_kappa_above: 0.6
+  primary_judge: "strongreject-v1"
+  reference_judge: "stringmatch"
+
+output:
+  runs_dir: "runs"
+  save_transcripts: true
+  save_leaderboard: true
+  generate_graveyard: true
+  generate_html_report: true

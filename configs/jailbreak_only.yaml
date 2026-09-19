@@ -1,0 +1,6 @@
+run_name: jailbreak_only
+seed: 42
+targets: [{name: offline/reference, type: offline}]
+datasets: [sentryeval-jailbreak-v1]
+attacks: [roleplay_jailbreak, encoding_obfuscation, crescendo]
+judges: [stringmatch, injection-detector]

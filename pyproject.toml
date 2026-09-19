@@ -1,0 +1,47 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "sentryeval"
+version = "0.1.0"
+description = "Comprehensive AI agent adversarial evaluation platform"
+readme = "README.md"
+requires-python = ">=3.11"
+license = {text = "Apache-2.0"}
+dependencies = [
+  "pydantic>=2.5",
+  "numpy>=1.26",
+  "scipy>=1.12",
+  "typer>=0.12",
+  "rich>=13.7",
+  "pyyaml>=6.0",
+  "python-dotenv>=1.0",
+  "diskcache>=5.6",
+  "orjson>=3.9",
+  "httpx>=0.27",
+]
+
+[project.optional-dependencies]
+live = ["openai>=1.30", "anthropic>=0.25", "google-generativeai>=0.5"]
+dashboard = ["streamlit>=1.35", "plotly>=5.20", "pandas>=2.1"]
+dev = ["pytest>=8.0", "pytest-asyncio>=0.23", "pytest-cov>=4.1", "mypy>=1.8", "ruff>=0.3"]
+
+[project.scripts]
+sentryeval = "sentryeval.cli.app:app"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/sentryeval"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+ignore = ["B007", "B008", "E501", "UP042"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+addopts = "-q"

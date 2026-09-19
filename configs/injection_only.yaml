@@ -1,0 +1,6 @@
+run_name: injection_only
+seed: 42
+targets: [{name: offline/reference, type: offline}]
+datasets: [sentryeval-direct-v1, sentryeval-indirect-rag-v1]
+attacks: [prompt_injection, authority_spoofing, context_injection]
+judges: [stringmatch, injection-detector]
