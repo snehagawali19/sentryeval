@@ -47,4 +47,4 @@ asyncio_mode = "auto"
 testpaths = ["tests"]
 addopts = "-q"
 [tool.vercel]
-entrypoint = "sentryeval.web.app:app"
+entrypoint = "sentryeval.app:app"
