@@ -1,5 +1,15 @@
-"""Vercel ASGI entrypoint at repo root (required by Vercel module path resolution)."""
+"""Vercel ASGI entrypoint — self-contained, no local package imports."""
 
-from sentryeval.app import app
+from fastapi import FastAPI
 
-__all__ = ["app"]
+app = FastAPI(title="SentryEval")
+
+
+@app.get("/")
+def root():
+    return {"status": "ok", "service": "SentryEval"}
+
+
+@app.get("/health")
+def health():
+    return {"healthy": True}
